@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/about_me"
+            android:title="About Me"
+            android:enabled="true"
+            android:icon="@drawable/ic_about">
+
+        </item>
+
+        <item android:id="@+id/resume"
+            android:title="Resume"
+            android:enabled="true"
+            android:icon="@drawable/ic_curriculum">
+
+        </item>
+
+        <item android:id="@+id/education"
+            android:title="Education"
+            android:enabled="true"
+            android:icon="@drawable/ic_education">
+
+        </item>
+
+        <item android:id="@+id/work_experience"
+            android:title="Woe Experience"
+            android:enabled="true"
+            android:icon="@drawable/ic_work">
+
+        </item>
+
+        <item android:id="@+id/projects"
+            android:title="My Projects"
+            android:enabled="true"
+            android:icon="@drawable/ic_technology">
+
+        </item>
+
+        <item android:id="@+id/trainings"
+            android:title="Trainings/Courses"
+            android:enabled="true"
+            android:icon="@drawable/ic_presentation">
+
+        </item>
+
+        <item android:id="@+id/achievements"
+            android:title="Awards and Achievements"
+            android:enabled="true"
+            android:icon="@drawable/ic_cup">
+
+        </item>
+
+        <item android:id="@+id/responsiblities"
+            android:enabled="true"
+            android:title="Positions of Responsiblities"
+            android:icon="@drawable/ic_responsive">
+
+        </item>
+
+        <item android:id="@+id/skills"
+            android:title="Technical Skills"
+            android:enabled="true"
+            android:icon="@drawable/ic_skill">
+
+        </item>
+
+        <item android:id="@+id/connect"
+            android:title="Contact"
+            android:enabled="true"
+            android:icon="@drawable/ic_transfer">
+
+        </item>
+
+    </group>
+
+    <item android:title="Connect With Me">
+
+        <menu>
+            <item android:id="@+id/message"
+                android:title="Message"
+                android:icon="@drawable/ic_email">
+
+            </item>
+
+            <item android:id="@+id/follow"
+                android:title="Follow"
+                android:icon="@drawable/ic_linkedin">
+
+            </item>
+
+        </menu>
+    </item>
+</menu>
