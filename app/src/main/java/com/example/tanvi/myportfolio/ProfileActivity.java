@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.google.firebase.FirebaseApp;
+
 import butterknife.Bind;
 
 public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +29,9 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        FirebaseApp.initializeApp(this);
+
 
         drawer = findViewById(R.id.drawer_main);
         NavigationView navigationView = findViewById(R.id.nav_view);

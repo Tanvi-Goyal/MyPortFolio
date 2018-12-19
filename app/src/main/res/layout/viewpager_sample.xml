@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/pagerImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:riv_corner_radius="10dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:src="@drawable/ic_transfer"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Heading"
+        android:id="@+id/pagertitle"
+        android:layout_margin="15dp"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Headingbvbjnjhgvbhjhvbnmnbvnm"
+        android:gravity="center"
+        android:id="@+id/pagertext"
+        android:layout_margin="10dp"
+        android:textSize="16dp"
+        android:layout_below="@id/pagertitle"
+        android:textColor="@color/white"
+        />
+</RelativeLayout>
+
+
