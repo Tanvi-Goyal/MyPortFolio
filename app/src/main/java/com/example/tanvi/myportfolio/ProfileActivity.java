@@ -1,5 +1,7 @@
 package com.example.tanvi.myportfolio;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -67,6 +69,17 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
             case R.id.about_me:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new AboutFragment()).commit();
+                break;
+
+            case R.id.resume:
+                Uri uri = Uri.parse("https://drive.google.com/open?id=1TU4qCQ40ZfNcJsuCDXrx6NqcsHUnhCut"); // missing 'http://' will cause crashed
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+                break;
+
+            case R.id.education:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new RecyclerFragment()).commit();
                 break;
 
         }

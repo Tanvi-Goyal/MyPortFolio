@@ -14,7 +14,7 @@
         app:riv_corner_radius="10dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:src="@drawable/ic_transfer"
+        android:src="@drawable/ic_curriculum"
         />
 
 

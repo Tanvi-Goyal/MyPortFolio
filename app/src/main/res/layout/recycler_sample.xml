@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="5dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/userImageProfile"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:elevation="8dp"
+        android:src="@mipmap/ic_launcher"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="33dp"
+        tools:ignore="MissingConstraints" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/profileCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Title"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/title"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Institution"
+                    android:layout_marginBottom="2dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/sub_title"
+                    android:fontFamily="@font/roboto_condensed_bold"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Duration"
+                    android:layout_marginBottom="2dp"
+                    android:id="@+id/sub_sub_title"
+                    android:fontFamily="@font/roboto_condensed_regular"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@color/grey"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_certificate"
+                        android:background="@null"
+                        android:layout_marginBottom="8dp"
+                        android:id="@+id/certificate"
+                        />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Read More"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+
+</android.support.constraint.ConstraintLayout>

@@ -34,7 +34,7 @@
       android:gravity="center"
       android:text="Tanvi Goyal"
       android:textColor="#000"
-      android:fontFamily="@font/raleway"
+      android:fontFamily="@font/roboto_bold"
       android:textSize="35sp"
       android:textStyle="bold"
       android:layout_marginTop="30dp"

@@ -33,8 +33,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_call_black_24dp" />
-                            <entry key="sourceFile" value="$USER_HOME$/Downloads/github.svg" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_certificate" />
+                            <entry key="sourceFile" value="$USER_HOME$/Downloads/certificate.svg" />
                           </map>
                         </option>
                       </PersistentState>
