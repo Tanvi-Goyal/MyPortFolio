@@ -277,14 +277,6 @@ public class AboutFragment extends Fragment {
 
         }
 
-//        //CircleIndicator
-//        CircleIndicatorPager indicator = view.findViewById(R.id.circle_indicator_pager);
-//        if (indicator != null) {
-//            indicator.setViewPager(viewPager);
-//        } else {
-//            Log.wtf("TAG", "Indicator null");
-//        }
-
 
     }
 }

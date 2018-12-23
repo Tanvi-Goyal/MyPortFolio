@@ -8,7 +8,7 @@
         <item android:id="@+id/about_me"
             android:title="About Me"
             android:enabled="true"
-            android:icon="@drawable/ic_about">
+            android:icon="@drawable/ic_aboutme">
 
         </item>
 
@@ -27,51 +27,44 @@
         </item>
 
         <item android:id="@+id/work_experience"
-            android:title="Woe Experience"
+            android:title="Work Experience"
             android:enabled="true"
-            android:icon="@drawable/ic_work">
+            android:icon="@drawable/ic_work_ex">
 
         </item>
 
         <item android:id="@+id/projects"
             android:title="My Projects"
             android:enabled="true"
-            android:icon="@drawable/ic_technology">
-
-        </item>
-
-        <item android:id="@+id/trainings"
-            android:title="Trainings/Courses"
-            android:enabled="true"
-            android:icon="@drawable/ic_presentation">
-
-        </item>
-
-        <item android:id="@+id/achievements"
-            android:title="Awards and Achievements"
-            android:enabled="true"
-            android:icon="@drawable/ic_cup">
-
-        </item>
-
-        <item android:id="@+id/responsiblities"
-            android:enabled="true"
-            android:title="Positions of Responsiblities"
-            android:icon="@drawable/ic_responsive">
+            android:icon="@drawable/ic_project">
 
         </item>
 
         <item android:id="@+id/skills"
             android:title="Technical Skills"
             android:enabled="true"
-            android:icon="@drawable/ic_skill">
+            android:icon="@drawable/ic_skills">
 
         </item>
 
-        <item android:id="@+id/connect"
-            android:title="Contact"
+        <item android:id="@+id/trainings"
+            android:title="Trainings/Courses"
             android:enabled="true"
-            android:icon="@drawable/ic_transfer">
+            android:icon="@drawable/ic_training">
+
+        </item>
+
+        <item android:id="@+id/achievements"
+            android:title="Awards and Achievements"
+            android:enabled="true"
+            android:icon="@drawable/ic_award">
+
+        </item>
+
+        <item android:id="@+id/responsiblities"
+            android:enabled="true"
+            android:title="Positions of Responsiblities"
+            android:icon="@drawable/ic_por">
 
         </item>
 
