@@ -1,4 +1,4 @@
-package com.example.tanvi.myportfolio;
+package com.example.tanvi.myportfolio.DataClasses;
 
 public class ViewPagerDataClass {
 
