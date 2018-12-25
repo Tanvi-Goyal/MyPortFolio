@@ -24,6 +24,7 @@ import com.example.tanvi.myportfolio.DataClasses.AchievementsDataClass;
 import com.example.tanvi.myportfolio.DataClasses.EducationDataClass;
 import com.example.tanvi.myportfolio.DataClasses.ProjectsDataClass;
 import com.example.tanvi.myportfolio.DataClasses.ResponsiblitiesDataClass;
+import com.example.tanvi.myportfolio.DataClasses.TechnicalSkillsDataClass;
 import com.example.tanvi.myportfolio.DataClasses.TrainingsDataClass;
 import com.example.tanvi.myportfolio.DataClasses.ViewPagerDataClass;
 import com.example.tanvi.myportfolio.DataClasses.WorkExperienceDataClass;
@@ -46,6 +47,8 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
     private DrawerLayout drawer;
     ArrayList<String> arr = new ArrayList<>();
+    public static ArrayList<String> skills = new ArrayList<>();
+    public static ArrayList<String> skillsImage = new ArrayList<>();
     public static ArrayList<AchievementsDataClass> achievements = new ArrayList<>();
     public static ArrayList<EducationDataClass> education = new ArrayList<>();
     public static ArrayList<ProjectsDataClass> projects = new ArrayList<>();
@@ -53,6 +56,12 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
     public static ArrayList<TrainingsDataClass> trainings = new ArrayList<>();
     public static ArrayList<ViewPagerDataClass> viewpager = new ArrayList<>();
     public static ArrayList<WorkExperienceDataClass> workExperience = new ArrayList<>();
+    public static ArrayList<TechnicalSkillsDataClass> androidlist = new ArrayList<>();
+    public static ArrayList<TechnicalSkillsDataClass> frameworkslist = new ArrayList<>();
+    public static ArrayList<TechnicalSkillsDataClass> misclist = new ArrayList<>();
+    public static ArrayList<TechnicalSkillsDataClass> programminglist = new ArrayList<>();
+    public static ArrayList<TechnicalSkillsDataClass> weblist = new ArrayList<>();
+
 
 
     @Override
@@ -80,17 +89,16 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new AboutFragment()).commit();
-//            navigationView.setCheckedItem(R.id.about_me);
         }
 
-        addItems(arr);
+        addItems( skills , arr);
 
     }
 
-    private void addItems(final ArrayList<String> arr) {
+    private void addItems( final ArrayList<String> strings, final ArrayList<String> arr) {
 
 
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -98,8 +106,26 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                     arr.add(child.getKey());
                 }
 
-                Log.wtf("TAG" , arr.toString());
                 fetchData(arr);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference.child("Technical Skills").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                    strings.add(child.getKey());
+
+                }
+                Log.wtf("TAG" , strings.toString() );
+
+                fetchSkillsData(strings);
+
             }
 
             @Override
@@ -112,6 +138,48 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
     }
 
+    private void fetchSkillsData(ArrayList<String> strings) {
+
+
+        Log.wtf("TAG" , strings.toString() );
+
+        for(int i = 0 ; i< strings.size() ; i++){
+            Log.wtf("TAG" , strings.get(i) );
+            final int finalI = i;
+            AndroidNetworking.get("https://floating-caverns-30742.herokuapp.com/Technical Skills/" + strings.get(finalI))
+
+                    .build().getAsJSONArray(new JSONArrayRequestListener() {
+                @Override
+                public void onResponse(JSONArray response) {
+                    Log.wtf("TAG", String.valueOf(response));
+                    if(finalI == 0){
+                        androidlist = new Gson().fromJson(response.toString(), new TypeToken<List<TechnicalSkillsDataClass>>() {}.getType());
+                    }
+                    if(finalI == 1){
+                        frameworkslist = new Gson().fromJson(response.toString(), new TypeToken<List<TechnicalSkillsDataClass>>() {}.getType());
+                    }
+                    if(finalI == 2){
+                        misclist = new Gson().fromJson(response.toString(), new TypeToken<List<TechnicalSkillsDataClass>>() {}.getType());
+                    }
+                    if(finalI == 3){
+                        programminglist = new Gson().fromJson(response.toString(), new TypeToken<List<TechnicalSkillsDataClass>>() {}.getType());
+                    }
+                    if(finalI == 4){
+                        weblist = new Gson().fromJson(response.toString(), new TypeToken<List<TechnicalSkillsDataClass>>() {}.getType());
+                    }
+
+
+                }
+
+                @Override
+                public void onError(ANError anError) {
+
+                }
+            });
+
+        }
+    }
+
     private void fetchData(ArrayList<String> myArr) {
 
         for(int i = 0 ; i < myArr.size() ; i++) {
@@ -122,7 +190,7 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                     .build().getAsJSONArray(new JSONArrayRequestListener() {
                 @Override
                 public void onResponse(JSONArray response) {
-                    Log.wtf("TAG", String.valueOf(response));
+//                    Log.wtf("TAG", String.valueOf(response));
                     if(finalI == 0){
                         achievements = new Gson().fromJson(response.toString(), new TypeToken<List<AchievementsDataClass>>() {}.getType());
                     }

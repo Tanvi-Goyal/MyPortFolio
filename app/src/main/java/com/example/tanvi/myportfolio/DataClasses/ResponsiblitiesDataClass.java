@@ -2,17 +2,26 @@ package com.example.tanvi.myportfolio.DataClasses;
 
 public class ResponsiblitiesDataClass {
 
-    String certificate , duration , image, instituition , title;
+    String certificate , duration , image, institution , title , description;
 
     public ResponsiblitiesDataClass() {
     }
 
-    public ResponsiblitiesDataClass(String certificate, String duration, String image, String instituition, String title) {
+    public ResponsiblitiesDataClass(String certificate, String duration, String image, String institution, String title , String description) {
         this.certificate = certificate;
         this.duration = duration;
         this.image = image;
-        this.instituition = instituition;
+        this.institution = institution;
         this.title = title;
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getCertificate() {
@@ -39,12 +48,12 @@ public class ResponsiblitiesDataClass {
         this.image = image;
     }
 
-    public String getInstituition() {
-        return instituition;
+    public String getInstitution() {
+        return institution;
     }
 
-    public void setInstituition(String instituition) {
-        this.instituition = instituition;
+    public void setInstituition(String institution) {
+        this.institution = institution;
     }
 
     public String getTitle() {

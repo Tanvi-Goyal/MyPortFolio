@@ -2,17 +2,26 @@ package com.example.tanvi.myportfolio.DataClasses;
 
 public class AchievementsDataClass {
 
-    String certificate , description , position , time , title;
+    String certificate , description , position , time , title , image;
 
     public AchievementsDataClass() {
     }
 
-    public AchievementsDataClass(String certificate, String description, String position, String time, String title) {
+    public AchievementsDataClass(String certificate, String description, String position, String time, String title , String image) {
         this.certificate = certificate;
         this.description = description;
         this.position = position;
         this.time = time;
         this.title = title;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getCertificate() {

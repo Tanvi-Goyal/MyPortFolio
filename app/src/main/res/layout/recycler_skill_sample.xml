@@ -18,6 +18,7 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="Technical Skill"
+               android:id="@+id/skillName"
                android:layout_marginLeft="15dp"
                android:fontFamily="@font/roboto_bold"
                android:textColor="@color/black"
@@ -32,6 +33,7 @@
             app:dsb_min="0"
             app:dsb_max="100"
             app:dsb_value="50"
+            android:id="@+id/skillRate"
             app:dsb_indicatorColor="@color/black"
             app:dsb_progressColor="@color/colorAccent"
             app:dsb_rippleColor="@color/grey"/>

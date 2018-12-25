@@ -115,6 +115,14 @@ public class AboutFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+//
+//        for (int i=0;i<ProfileActivity.viewpager.size();i++){
+//            imagesList.add(ProfileActivity.viewpager.get(i).getImage());
+//            titleList.add(ProfileActivity.viewpager.get(i).getTitle());
+//            textsList.add(ProfileActivity.viewpager.get(i).getText());
+//        }
+//
+//        setViewPager(imagesList,titleList,textsList,view);
     }
 
     private void displayGraph() {

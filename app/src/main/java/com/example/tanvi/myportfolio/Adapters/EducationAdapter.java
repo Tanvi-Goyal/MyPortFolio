@@ -1,8 +1,6 @@
-package com.example.tanvi.myportfolio;
+package com.example.tanvi.myportfolio.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.tanvi.myportfolio.DataClasses.EducationDataClass;
+import com.example.tanvi.myportfolio.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +21,9 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.View
 
     private List<EducationDataClass> mData;
     private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    EducationAdapter(Context context, ArrayList<EducationDataClass> data) {
+    public EducationAdapter(Context context, ArrayList<EducationDataClass> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -50,19 +48,22 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.View
 //        Uri uri = Uri.parse(current.getCertificate());
 //        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
 //        holder.itemView.getContext().startActivity(intent);
+
+        holder.more.setVisibility(View.GONE);
     }
 
     // total number of rows
     @Override
     public int getItemCount() {
+
         return mData.size();
     }
 
 
     // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder  {
         TextView title , sub_title , sub_sub_title;
-        ImageButton certificate;
+        ImageButton certificate , more;
         CircleImageView image;
 
         ViewHolder(View itemView) {
@@ -71,28 +72,11 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.View
             sub_title = itemView.findViewById(R.id.sub_title);
             sub_sub_title = itemView.findViewById(R.id.sub_sub_title);
             certificate = itemView.findViewById(R.id.certificate);
+            more = itemView.findViewById(R.id.more);
             image = itemView.findViewById(R.id.img);
-            itemView.setOnClickListener(this);
         }
 
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
-        }
     }
 
-    // convenience method for getting data at click position
-    EducationDataClass getItem(int id) {
-        return mData.get(id);
-    }
 
-    // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
 }

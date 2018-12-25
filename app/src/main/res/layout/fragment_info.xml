@@ -14,10 +14,11 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:id="@+id/info_image"
             android:src="@drawable/ic_certificate"
             />
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
@@ -35,7 +36,7 @@
                     android:text="Job Title"
                     android:layout_marginBottom="2dp"
                     android:textColor="@color/black"
-                    android:id="@+id/title"
+                    android:id="@+id/info_title"
                     android:fontFamily="@font/roboto_bold"
                     android:textSize="18sp" />
 
@@ -45,20 +46,36 @@
                     android:text="Institution"
                     android:layout_marginBottom="2dp"
                     android:textColor="@color/black"
-                    android:id="@+id/sub_title"
+                    android:id="@+id/info_sub_title"
                     android:fontFamily="@font/roboto_condensed_bold"
                     android:textSize="14sp" />
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Duration"
-                    android:layout_marginBottom="2dp"
-                    android:id="@+id/sub_sub_title"
-                    android:fontFamily="@font/roboto_condensed_regular"
-                    android:textSize="14sp" />
+                    >
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Duration"
+                        android:layout_marginBottom="2dp"
+                        android:id="@+id/info_sub_sub_title"
+                        android:fontFamily="@font/roboto_condensed_regular"
+                        android:textSize="14sp" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_certificate"
+                        android:background="@null"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="30dp"
+                        android:id="@+id/info_certificate"
+                        android:layout_alignParentRight="true" />
+                </RelativeLayout>
             </LinearLayout>
-        </LinearLayout>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
@@ -90,6 +107,7 @@
                 android:layout_height="match_parent"
                 android:textSize="18sp"
                 android:padding="10dp"
+                android:id="@+id/info_description"
                 android:background="@drawable/border"
                 android:layout_gravity="center"
                 android:fontFamily="@font/roboto_condensed_regular"
