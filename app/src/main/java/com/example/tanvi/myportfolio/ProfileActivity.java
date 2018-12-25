@@ -2,27 +2,58 @@ package com.example.tanvi.myportfolio;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.example.tanvi.myportfolio.DataClasses.AchievementsDataClass;
+import com.example.tanvi.myportfolio.DataClasses.EducationDataClass;
+import com.example.tanvi.myportfolio.DataClasses.ProjectsDataClass;
+import com.example.tanvi.myportfolio.DataClasses.ResponsiblitiesDataClass;
+import com.example.tanvi.myportfolio.DataClasses.TrainingsDataClass;
+import com.example.tanvi.myportfolio.DataClasses.ViewPagerDataClass;
+import com.example.tanvi.myportfolio.DataClasses.WorkExperienceDataClass;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import butterknife.Bind;
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-//    @Bind(R.id.toolbar)
-//    Toolbar toolbar;
 
     private DrawerLayout drawer;
+    ArrayList<String> arr = new ArrayList<>();
+    public static ArrayList<AchievementsDataClass> achievements = new ArrayList<>();
+    public static ArrayList<EducationDataClass> education = new ArrayList<>();
+    public static ArrayList<ProjectsDataClass> projects = new ArrayList<>();
+    public static ArrayList<ResponsiblitiesDataClass> responsiblities = new ArrayList<>();
+    public static ArrayList<TrainingsDataClass> trainings = new ArrayList<>();
+    public static ArrayList<ViewPagerDataClass> viewpager = new ArrayList<>();
+    public static ArrayList<WorkExperienceDataClass> workExperience = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +83,81 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 //            navigationView.setCheckedItem(R.id.about_me);
         }
 
+        addItems(arr);
+
+    }
+
+    private void addItems(final ArrayList<String> arr) {
+
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot child : dataSnapshot.getChildren()){
+                    arr.add(child.getKey());
+                }
+
+                Log.wtf("TAG" , arr.toString());
+                fetchData(arr);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+    }
+
+    private void fetchData(ArrayList<String> myArr) {
+
+        for(int i = 0 ; i < myArr.size() ; i++) {
+            String str = myArr.get(i);
+            final int finalI = i;
+            AndroidNetworking.get("https://floating-caverns-30742.herokuapp.com/" + str)
+
+                    .build().getAsJSONArray(new JSONArrayRequestListener() {
+                @Override
+                public void onResponse(JSONArray response) {
+                    Log.wtf("TAG", String.valueOf(response));
+                    if(finalI == 0){
+                        achievements = new Gson().fromJson(response.toString(), new TypeToken<List<AchievementsDataClass>>() {}.getType());
+                    }
+                    if(finalI == 1){
+                        education = new Gson().fromJson(response.toString(), new TypeToken<List<EducationDataClass>>() {}.getType());
+                    }
+                    if(finalI == 2){
+                        projects = new Gson().fromJson(response.toString(), new TypeToken<List<ProjectsDataClass>>() {}.getType());
+                    }
+                    if(finalI == 3){
+                        responsiblities = new Gson().fromJson(response.toString(), new TypeToken<List<ResponsiblitiesDataClass>>() {}.getType());
+                    }
+                    if(finalI == 4){
+//                        achievements = new Gson().fromJson(response.toString(), new TypeToken<List<AchievementsDataClass>>() {}.getType());
+                    }
+                    if(finalI == 5){
+                        trainings = new Gson().fromJson(response.toString(), new TypeToken<List<TrainingsDataClass>>() {}.getType());
+                    }
+                    if(finalI == 6){
+                        viewpager = new Gson().fromJson(response.toString(), new TypeToken<List<ViewPagerDataClass>>() {}.getType());
+                    }
+                    if(finalI == 7){
+                        workExperience = new Gson().fromJson(response.toString(), new TypeToken<List<WorkExperienceDataClass>>() {}.getType());
+                    }
+
+                }
+
+                @Override
+                public void onError(ANError anError) {
+
+                }
+            });
+
+        }
+
     }
 
     @Override
@@ -65,10 +171,12 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Bundle bundle = new Bundle();
+        Fragment fragment = null;
         switch (menuItem.getItemId()) {
+
             case R.id.about_me:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AboutFragment()).commit();
+                fragment = new AboutFragment();
                 break;
 
             case R.id.resume:
@@ -78,12 +186,64 @@ public class ProfileActivity extends AppCompatActivity implements NavigationView
                 break;
 
             case R.id.education:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new RecyclerFragment()).commit();
+                bundle.putString("activityName", "Education");
+                fragment = new RecyclerFragment();
+                fragment.setArguments(bundle);
                 break;
 
-        }
+            case R.id.work_experience:
+                bundle.putString("activityName", "Work Experience");
+                fragment = new RecyclerFragment();
+                fragment.setArguments(bundle);
+                break;
+            case R.id.projects:
+                bundle.putString("activityName", "Projects");
+                fragment = new RecyclerFragment();
+                fragment.setArguments(bundle);
+                break;
 
+            case R.id.skills:
+                bundle.putString("activityName", "Technical Skills");
+                fragment = new RecyclerFragment();
+                fragment.setArguments(bundle);
+                break;
+
+            case R.id.trainings:
+                bundle.putString("activityName", "Trainings");
+                fragment = new RecyclerFragment();
+                fragment.setArguments(bundle);
+                break;
+
+            case R.id.achievements:
+                bundle.putString("activityName", "Achievements");
+                fragment = new RecyclerFragment();
+                fragment.setArguments(bundle);
+                break;
+
+            case R.id.responsiblities:
+                bundle.putString("activityName", "Responsiblities");
+                fragment = new RecyclerFragment();
+                fragment.setArguments(bundle);
+                break;
+
+            case R.id.message:
+//                bundle.putString("activityName", "Education");
+//                fragment = new RecyclerFragment();
+//                fragment.setArguments(bundle);
+                break;
+
+            case R.id.follow:
+//                bundle.putString("activityName", "Education");
+//                fragment = new RecyclerFragment();
+//                fragment.setArguments(bundle);
+                break;
+
+
+        }
+        if (fragment != null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.fragment_container, fragment);ft.commit();
+        }
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

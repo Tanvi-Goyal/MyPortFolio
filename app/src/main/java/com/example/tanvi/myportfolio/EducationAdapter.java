@@ -1,22 +1,31 @@
 package com.example.tanvi.myportfolio;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.tanvi.myportfolio.DataClasses.EducationDataClass;
+
+import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.ViewHolder> {
 
-    private List<String> mData;
+    private List<EducationDataClass> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    EducationAdapter(Context context, List<String> data) {
+    EducationAdapter(Context context, ArrayList<EducationDataClass> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -32,9 +41,15 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.View
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
 
+        EducationDataClass current = mData.get(position);
+        holder.title.setText(current.getTitle());
+        holder.sub_title.setText(current.getInstitution());
+        holder.sub_sub_title.setText(current.getDuration());
+        Glide.with(holder.itemView.getContext()).load(current.getImage()).into(holder.image);
+//        Uri uri = Uri.parse(current.getCertificate());
+//        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//        holder.itemView.getContext().startActivity(intent);
     }
 
     // total number of rows
@@ -46,12 +61,17 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.View
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
-
+        TextView title , sub_title , sub_sub_title;
+        ImageButton certificate;
+        CircleImageView image;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.title);
+            title = itemView.findViewById(R.id.title);
+            sub_title = itemView.findViewById(R.id.sub_title);
+            sub_sub_title = itemView.findViewById(R.id.sub_sub_title);
+            certificate = itemView.findViewById(R.id.certificate);
+            image = itemView.findViewById(R.id.img);
             itemView.setOnClickListener(this);
         }
 
@@ -62,7 +82,7 @@ public class EducationAdapter extends RecyclerView.Adapter<EducationAdapter.View
     }
 
     // convenience method for getting data at click position
-    String getItem(int id) {
+    EducationDataClass getItem(int id) {
         return mData.get(id);
     }
 
